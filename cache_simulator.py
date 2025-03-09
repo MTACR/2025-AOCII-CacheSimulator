@@ -1,13 +1,12 @@
 import sys
 
-
 from cache import Cache
 
 
 def main():
     if len(sys.argv) != 7:
         print("Número de argumentos incorreto. Utilize:")
-        print("Uso: python cache_simulator.py <nsets> <bsize> <assoc> <substituição> <flagOut> <arquivo_de_entrada>")
+        print("python3 cache_simulator.py <nsets> <bsize> <assoc> <substituição> <flagOut> <arquivo_de_entrada>")
         exit(1)
 
     nsets = int(sys.argv[1])
@@ -22,7 +21,7 @@ def main():
     print("assoc =", assoc)
     print("subst =", subst)
     print("flagOut =", flagOut)
-    print("arquivo =", arquivoEntrada)
+    print("file =", arquivoEntrada)
 
     stats = [0, 0, 0, 0]
     cont = 0
@@ -47,9 +46,10 @@ def main():
 
         t_miss = stats[1] + stats[2] + stats[3]
         if flagOut == 1:
-            print(f"{cont} {stats[0] / cont:.2f} {t_miss / cont:.2f} {stats[1] / t_miss:.2f} {stats[2] / t_miss:.2f} {stats[3] / t_miss:.2f}")
+            print(f"\n{cont} {stats[0] / cont:.4f} {t_miss / cont:.4f} {stats[1] / t_miss:.2f} {stats[2] / t_miss:.2f} {stats[3] / t_miss:.2f}")
         elif flagOut == 0:
-            print(f"Nome do Arquivo:\t\t{arquivoEntrada}\nTotal de acessos:\t\t{cont}"
+            print(f"\nNome do Arquivo:\t\t{arquivoEntrada}"
+                  f"\nTotal de Acessos:\t\t{cont}"
                   f"\nTotal de Hit:\t\t\t{stats[0]}"
                   f"\nTaxa de Hit:\t\t\t{(stats[0] / cont) * 100:.2f}%"
                   f"\nTotal de Miss:\t\t\t{t_miss}"
@@ -65,6 +65,7 @@ def main():
         print(f"Erro: {ex}")
     except IOError as ex:
         print(f"Erro: {ex}")
+
 
 if __name__ == "__main__":
     main()

@@ -18,7 +18,7 @@ class Cache:  # Define a classe Cache e seus parâmetros
         tag = ad >> (offset + index_bits)
         index = (ad >> offset) & (2**index_bits - 1)
 
-        returns = self.set[index].insert(tag)
+        returns = self.set[index].insert(tag) # Insere a tag no conjunto da cache
 
         if returns == 1:
             self.cont_ocp += 1

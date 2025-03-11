@@ -56,7 +56,7 @@ def main():
     cache = Cache(nsets, bsize, assoc, subst)
 
     try:
-        # Abre o arquivo binário de entrada para leitura
+        
         with open(arquivoEntrada, 'rb') as bin_file:
             while True:
                 addresses = bin_file.read(4)  # Lê 4 bytes por vez (endereço de memória de 32 bits)
@@ -65,7 +65,7 @@ def main():
                 end = int.from_bytes(addresses, byteorder='big')  # Converte os 4 bytes lidos para um inteiro (endereço de memória)
                 response = cache.load(end)  # Chama a função load da cache para verificar se o endereço já estava armazenado
 
-                if response == 2:  # Se a resposta for 2 (miss de capacidade), verifica se a cache está cheia
+                if response == 2:  
                     if not cache.is_full():
                         response = 3  # Se não estiver cheia, trata como um miss de conflito
 

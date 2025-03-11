@@ -13,10 +13,10 @@ class Cache:  # Define a classe Cache e seus parâmetros
         self.cont_ocp = 0
 
     def load(self, end):  # Calcula o índice do conjunto na cache (qual conjunto será acessado)
-        offset_bits = self.bsize.bit_length() - 1
+        offset = self.bsize.bit_length() - 1
         index_bits = self.nsets.bit_length() - 1
-        tag = end >> (offset_bits + index_bits)
-        index = (end >> offset_bits) & ((1 << index_bits) - 1)
+        tag = end >> (offset + index_bits)
+        index = (end >> offset) & ((1 << index_bits) - 1)
 
         returns = self.set[index].insert(tag)
 

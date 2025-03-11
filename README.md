@@ -1,6 +1,6 @@
 # Simulador de Cache
 
-O app Forma Palavras é uma ferramenta educativa projetada para auxiliar no desenvolvimento da alfabetização e no aprimoramento das habilidades linguísticas. Ele incentiva as crianças a formarem palavras a partir de letras ou sílabas. O app ajuda a coletar dados para estudar a forma que as crianças se desenvolvem conforme jogam.
+Este trabalho simula o comportamento de um sistema de memória cache, permitindo analisar seu desempenho com diferentes configurações.
 
 ## Como rodar?
 
@@ -13,7 +13,7 @@ O app Forma Palavras é uma ferramenta educativa projetada para auxiliar no dese
    ```
 
 3. Caso queira testes já pré-definidos, execute o seguinte comando no terminal:
-
+   
    ```bash
    ./exec.sh
    ```

@@ -22,7 +22,22 @@ def main():
     # Verificando apenas nsets e bsize
     if not (is_power_of_2(nsets) and is_power_of_2(bsize)):
         print("Erro: nsets e bsize devem ser potências de 2.")
-        exit(1)  
+        exit(1)
+
+    #verifica se nsets, bsize e assoc são maiores que zero
+    if nsets <= 0 or bsize <= 0 or assoc <= 0:
+        print("Erro: nsets, bsize e assoc devem ser maiores que zero.")
+        exit(1)
+
+    #verifica se subst é 'R', 'F' ou 'L'
+    if subst not in ['R', 'F', 'L']:
+        print("Erro: A política de substituição deve ser 'R' (Random), 'F' (FIFO) ou 'L' (LRU).")
+        exit(1)
+
+    #verifica se a flag de saída é 0 ou 1
+    if flagOut not in [0, 1]:
+        print("Erro: flagOut deve ser 0 ou 1.")
+        exit(1)
 
     # Imprime os parâmetros
     print("nsets =", nsets)

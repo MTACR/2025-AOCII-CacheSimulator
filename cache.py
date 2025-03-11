@@ -12,11 +12,11 @@ class Cache:  # Define a classe Cache e seus parâmetros
         self.nesp = nsets * assoc  # Calcula o número total de espaços disponíveis na cache (conjuntos * vias)
         self.cont_ocp = 0
 
-    def load(self, end):  # Calcula o índice do conjunto na cache (qual conjunto será acessado)
+    def load(self, ad):  # Calcula o índice do conjunto na cache (qual conjunto será acessado)
         offset = self.bsize.bit_length() - 1
         index_bits = self.nsets.bit_length() - 1
-        tag = end >> (offset + index_bits)
-        index = (end >> offset) & ((1 << index_bits) - 1)
+        tag = ad >> (offset + index_bits)
+        index = (ad >> offset) & ((1 << index_bits) - 1)
 
         returns = self.set[index].insert(tag)
 

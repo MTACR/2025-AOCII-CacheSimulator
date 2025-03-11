@@ -26,11 +26,6 @@ def main():
         print("Erro: nsets e bsize devem ser potências de 2.")
         exit(1)
 
-    # verifica se nsets, bsize e assoc são maiores que zero
-    if nsets <= 0 or bsize <= 0 or assoc <= 0:
-        print("Erro: nsets, bsize e assoc devem ser maiores que zero.")
-        exit(1)
-
     # verifica se subst é 'R', 'F' ou 'L'
     if subst not in ['R', 'F', 'L']:
         print("Erro: A política de substituição deve ser 'R' (Random), 'F' (FIFO) ou 'L' (LRU).")
@@ -67,10 +62,8 @@ def main():
                 addresses = bin_file.read(4)  # Lê 4 bytes por vez (endereço de memória de 32 bits)
                 if not addresses:
                     break
-                end = int.from_bytes(addresses,
-                                     byteorder='big')  # Converte os 4 bytes lidos para um inteiro (endereço de memória)
-                response = cache.load(
-                    end)  # Chama a função load da cache para verificar se o endereço já estava armazenado
+                end = int.from_bytes(addresses, byteorder='big')  # Converte os 4 bytes lidos para um inteiro (endereço de memória)
+                response = cache.load(end)  # Chama a função load da cache para verificar se o endereço já estava armazenado
 
                 if response == 2:  # Se a resposta for 2 (miss de capacidade), verifica se a cache está cheia
                     if not cache.is_full():

@@ -12,16 +12,17 @@ class Cache: # Define a classe Cache e seus parâmetros
         self.cont_ocp = 0
 
     def load(self, end): # Calcula o índice do conjunto na cache (qual conjunto será acessado)
-        ad_set = end // self.bsize # Divide o endereço pelo tamanho do bloco
-        index = ad_set % self.nsets # Usa módulo para obter o índice do conjunto
-        tag = ad_set // self.nsets # Calcula a tag
+        offset_bits = self.bsize.bit_length() - 1
+        index_bits = self.nsets.bit_length() - 1
+        tag = end >> (offset_bits + index_bits)
+        index = (end >> offset_bits) & ((1 << index_bits) - 1)
 
-        returns = self.set[index].insert(tag)  # insere a tag no conjunto correspondente
+        returns = self.set[index].insert(tag)
 
-        if returns == 1: # Se returns == 1, significa que foi um miss compulsório, então incrementamos os espaços ocupados
+        if returns == 1:
             self.cont_ocp += 1
 
-        return returns # Retorna o tipo de acesso (hit ou miss)
+        return returns
 
     def is_full(self): #Retorna True se a cache estiver completamente cheia, caso contrário, retorna False.
         return self.cont_ocp >= self.nesp

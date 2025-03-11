@@ -2,6 +2,8 @@ import sys
 
 from cache import Cache
 
+def is_power_of_2(n):
+    return n > 0 and (n & (n - 1)) == 0
 
 def main():
     # verifica os argumentos passados na linha de comando
@@ -10,12 +12,17 @@ def main():
         print("python3 cache_simulator.py <nsets> <bsize> <assoc> <substituição> <flagOut> <arquivo_de_entrada>")
         exit(1)
 
-    nsets = int(sys.argv[1]) # Número de conjuntos da cache
-    bsize = int(sys.argv[2]) # Tamanho do bloco
-    assoc = int(sys.argv[3]) # Grau de associatividade
-    subst = sys.argv[4][0] # Política de substituição
-    flagOut = int(sys.argv[5]) # Define o modo de saída
+    nsets = int(sys.argv[1]) 
+    bsize = int(sys.argv[2]) 
+    assoc = int(sys.argv[3]) 
+    subst = sys.argv[4][0] 
+    flagOut = int(sys.argv[5]) 
     arquivoEntrada = sys.argv[6]
+
+    # Verificando apenas nsets e bsize
+    if not (is_power_of_2(nsets) and is_power_of_2(bsize)):
+        print("Erro: nsets e bsize devem ser potências de 2.")
+        exit(1)  
 
     # Imprime os parâmetros
     print("nsets =", nsets)

@@ -1,7 +1,7 @@
 from cache_set import Cache_Set
 
 
-class Cache: # Define a classe Cache
+class Cache: # Define a classe Cache e seus parâmetros
     def __init__(self, nsets, bsize, assoc, subst):
         self.nsets = nsets
         self.bsize = bsize

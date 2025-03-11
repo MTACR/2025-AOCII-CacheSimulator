@@ -16,7 +16,7 @@ class Cache:  # Define a classe Cache e seus parâmetros
         offset = self.bsize.bit_length() - 1
         index_bits = self.nsets.bit_length() - 1
         tag = ad >> (offset + index_bits)
-        index = (ad >> offset) & ((1 << index_bits) - 1)
+        index = (ad >> offset) & (2**index_bits - 1)
 
         returns = self.set[index].insert(tag)
 

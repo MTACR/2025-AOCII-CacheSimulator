@@ -1,18 +1,20 @@
 # Simulador de Cache
 
-Este trabalho simula o comportamento de um sistema de memória cache, permitindo analisar seu desempenho com diferentes configurações.
+Este trabalho executa o comportamento de um simulador de memória cache, permitindo analisar seu desempenho com diferentes configurações.
 
 ## Como rodar?
 
-1. Certifique-se que o terminal está na pasta raiz do programa, onde estão todos os arquivos.
+1. Tenha o python instalado no computador.
 
-2. Rode o seguinte comando no terminal com os parâmetros para o seu teste:
+2. Certifique-se que o terminal está sendo aberto na pasta raiz do programa, onde estão todos os arquivos.
+
+3. Rode o seguinte comando no terminal com os parâmetros para o seu teste (caso for executar no terminal windows, retire o número 3 na palavra python):
 
    ```bash
    python3 cache_simulator.py <nsets> <bsize> <assoc> <substituição> <flagOut> <arquivo_de_entrada>
    ```
 
-3. Caso queira testes já pré-definidos, execute o seguinte comando no terminal:
+4. Caso queira testes já pré-definidos, execute o seguinte comando no terminal (linux):
    
    ```bash
    ./exec.sh

@@ -3,10 +3,6 @@ import sys
 from cache import Cache
 
 
-def is_power_of_2(n):
-    return n > 0 and (n & (n - 1)) == 0
-
-
 def main():
     # verifica os argumentos passados na linha de comando
     if len(sys.argv) != 7:
@@ -21,8 +17,8 @@ def main():
     flagOut = int(sys.argv[5])
     arquivoEntrada = sys.argv[6]
 
-    # Verificando apenas nsets e bsize
-    if not (is_power_of_2(nsets) and is_power_of_2(bsize)):
+    # verifica apenas nsets e bsize
+    if not (Cache.is_power_of_2(nsets) and Cache.is_power_of_2(bsize)):
         print("Erro: nsets e bsize devem ser potências de 2.")
         exit(1)
 
@@ -36,7 +32,7 @@ def main():
         print("Erro: flagOut deve ser 0 ou 1.")
         exit(1)
 
-    # Imprime os parâmetros
+    # imprime os parâmetros
     print("nsets =", nsets)
     print("bsize =", bsize)
     print("assoc =", assoc)
@@ -44,35 +40,34 @@ def main():
     print("flagOut =", flagOut)
     print("file =", arquivoEntrada)
 
-    # Inicializa a lista de estatísticas:
     # stats[0] -> hits
     # stats[1] -> miss compulsório
     # stats[2] -> miss de capacidade
     # stats[3] -> miss de conflito
     stats = [0, 0, 0, 0]
-    cont = 0  # Contador de acessos totais
+    cont = 0  # contador de acessos totais
 
-    # Cria uma instância da cache com os parâmetros fornecidos
+    # cria uma instância da cache com os parâmetros fornecidos
     cache = Cache(nsets, bsize, assoc, subst)
 
     try:
-        
+
         with open(arquivoEntrada, 'rb') as bin_file:
             while True:
-                addresses = bin_file.read(4)  # Lê 4 bytes por vez (endereço de memória de 32 bits)
+                addresses = bin_file.read(4) # lê 4 bytes por vez
                 if not addresses:
                     break
-                end = int.from_bytes(addresses, byteorder='big')  # Converte os 4 bytes lidos para um inteiro (endereço de memória)
-                response = cache.load(end)  
+                ad = int.from_bytes(addresses, byteorder='big')
+                response = cache.load(ad)
 
-                if response == 2:  
+                if response == 2:  # miss de capacidade
                     if not cache.is_full():
-                        response = 3  # Se não estiver cheia, trata como um miss de conflito
+                        response = 3  # miss de conflito
 
-                stats[response] += 1  # Atualiza a estatística correspondente
-                cont += 1  # Incrementa o total de acessos
+                stats[response] += 1
+                cont += 1
 
-        t_miss = stats[1] + stats[2] + stats[3]  # Calcula o total de misses
+        t_miss = stats[1] + stats[2] + stats[3]
         if flagOut == 1:
             print(f"\n{cont} {stats[0] / cont:.4f} {t_miss / cont:.4f} {stats[1] / t_miss:.2f} {stats[2] / t_miss:.2f} {stats[3] / t_miss:.2f}")
         elif flagOut == 0:
@@ -89,9 +84,9 @@ def main():
                   f"\nTotal de Miss de Conflito:\t{stats[3]}"
                   f"\nTaxa de Miss de Conflito:\t{(stats[3] / t_miss) * 100:.2f}%")
 
-    except FileNotFoundError as ex:  # arquivo de entrada não encontrado
+    except FileNotFoundError as ex:
         print(f"Erro: {ex}")
-    except IOError as ex:  # problema na leitura do arquivo
+    except IOError as ex:
         print(f"Erro: {ex}")
 
 

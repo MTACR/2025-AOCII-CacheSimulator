@@ -63,7 +63,7 @@ def main():
                 if not addresses:
                     break
                 end = int.from_bytes(addresses, byteorder='big')  # Converte os 4 bytes lidos para um inteiro (endereço de memória)
-                response = cache.load(end)  # Chama a função load da cache para verificar se o endereço já estava armazenado
+                response = cache.load(end)  
 
                 if response == 2:  
                     if not cache.is_full():

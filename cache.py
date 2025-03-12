@@ -8,11 +8,11 @@ class Cache:  # Define a classe Cache e seus parâmetros
         self.assoc = assoc
         self.subst = subst
         self.set = [Cache_Set(assoc, subst) for _ in
-                    range(nsets)]  # Cria uma lista de conjuntos (cada conjunto é um objeto da classe Cache_Set)
-        self.nesp = nsets * assoc  # Calcula o número total de espaços disponíveis na cache (conjuntos * vias)
-        self.cont_ocp = 0
+                    range(nsets)]  # Cria uma lista de conjuntos (nsets), cada conjunto é um objeto da classe Cache_Set.
+        self.nesp = nsets * assoc  # Calcula o número total de espaços disponíveis (número total de blocos)
+        self.cont_ocp = 0 # Contador de espaços ocupados na cache
 
-    def load(self, ad):  # Calcula o índice do conjunto na cache (qual conjunto será acessado)
+    def load(self, ad):  # insere um endereço na cache
         offset = self.bsize.bit_length() - 1
         index_bits = self.nsets.bit_length() - 1
         tag = ad >> (offset + index_bits)

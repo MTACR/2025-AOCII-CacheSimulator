@@ -54,7 +54,7 @@ def main():
 
         with open(arquivoEntrada, 'rb') as bin_file:
             while True:
-                addresses = bin_file.read(4) # lê 4 bytes por vez
+                addresses = bin_file.read(4)  # lê 4 bytes por vez
                 if not addresses:
                     break
                 ad = int.from_bytes(addresses, byteorder='big')
@@ -68,6 +68,7 @@ def main():
                 cont += 1
 
         t_miss = stats[1] + stats[2] + stats[3]
+        
         if flagOut == 1:
             print(f"\n{cont} {stats[0] / cont:.4f} {t_miss / cont:.4f} {stats[1] / t_miss:.2f} {stats[2] / t_miss:.2f} {stats[3] / t_miss:.2f}")
         elif flagOut == 0:

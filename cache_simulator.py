@@ -68,7 +68,7 @@ def main():
                 cont += 1
 
         t_miss = stats[1] + stats[2] + stats[3]
-        
+
         if flagOut == 1:
             print(f"\n{cont} {stats[0] / cont:.4f} {t_miss / cont:.4f} {stats[1] / t_miss:.2f} {stats[2] / t_miss:.2f} {stats[3] / t_miss:.2f}")
         elif flagOut == 0:
